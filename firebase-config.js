@@ -1,3 +1,5 @@
+// firebase-config.js
+// Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyC4sLp_eOeQkEVl4LRHcdZ84PjgyPUgZlE",
     authDomain: "jfuireghfkwioan.firebaseapp.com",
@@ -8,4 +10,5 @@ const firebaseConfig = {
     appId: "1:700003578134:web:b8a4c91fe2c779b55c2037"
 };
 
+// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
