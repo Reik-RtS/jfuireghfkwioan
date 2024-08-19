@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Login y CRUD</title>
+</head>
+<body>
+    <h1>Login con Firebase</h1>
+
+    <!-- Formulario de Login -->
+    <form id="login-form">
+        <input type="email" id="email" placeholder="Correo Electrónico" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+
+    <h2>Operaciones CRUD</h2>
+
+    <!-- Formulario para Leer Datos -->
+    <h3>Leer Datos de Contrato</h3>
+    <form id="read-form">
+        <input type="text" id="read-contrato-id" placeholder="ID del Contrato" required>
+        <button type="submit">Leer Contrato</button>
+    </form>
+    <pre id="contrato-data"></pre>
+
+    <!-- Formulario para Guardar Nuevos Datos -->
+    <h3>Crear Nuevo Contrato</h3>
+    <form id="create-form">
+        <input type="text" id="create-contrato-id" placeholder="ID del Contrato" required>
+        <input type="text" id="create-nombre" placeholder="Nombre" required>
+        <input type="text" id="create-anos-membresia" placeholder="Años de Membresía" required>
+        <input type="text" id="create-beneficiarios" placeholder="Beneficiarios" required>
+        <input type="text" id="create-celular" placeholder="Celular" required>
+        <input type="text" id="create-cerrador" placeholder="Cerrador" required>
+        <input type="email" id="create-correo" placeholder="Correo Electrónico" required>
+        <input type="text" id="create-cortesia" placeholder="Cortesía" required>
+        <input type="text" id="create-cuotas-pagadas" placeholder="Cuotas Pagadas" required>
+        <input type="text" id="create-dni" placeholder="DNI" required>
+        <input type="text" id="create-estado" placeholder="Estado" required>
+        <input type="date" id="create-fecha-nacimiento" placeholder="Fecha de Nacimiento" required>
+        <input type="number" id="create-ingreso-dolares" placeholder="Ingreso en Dólares" required>
+        <input type="number" id="create-ingreso-soles" placeholder="Ingreso en Soles" required>
+        <input type="date" id="create-inicio-pago" placeholder="Inicio de Pago" required>
+        <input type="text" id="create-liner" placeholder="Liner" required>
+        <input type="number" id="create-monto-cuotas-dolares" placeholder="Monto de Cuotas en Dólares" required>
+        <input type="number" id="create-monto-cuotas-soles" placeholder="Monto de Cuotas en Soles" required>
+        <input type="number" id="create-monto-pagare-dolares" placeholder="Monto del Pagaré en Dólares" required>
+        <input type="number" id="create-monto-pagare-soles" placeholder="Monto del Pagaré en Soles" required>
+        <input type="number" id="create-numero-cuotas" placeholder="Número de Cuotas" required>
+        <input type="number" id="create-numero-pagare" placeholder="Número del Pagaré" required>
+        <input type="text" id="create-obsequio" placeholder="Obsequio" required>
+        <input type="text" id="create-observacion1" placeholder="Observación 1" required>
+        <input type="text" id="create-observacion2" placeholder="Observación 2" required>
+        <input type="number" id="create-saldo-por-pagar-dolares" placeholder="Saldo por Pagar en Dólares" required>
+        <input type="number" id="create-saldo-por-pagar-soles" placeholder="Saldo por Pagar en Soles" required>
+        <input type="number" id="create-valor-contrato-dolares" placeholder="Valor del Contrato en Dólares" required>
+        <input type="number" id="create-valor-contrato-soles" placeholder="Valor del Contrato en Soles" required>
+        <button type="submit">Crear Contrato</button>
+    </form>
+
+    <!-- Formulario para Actualizar Datos -->
+    <h3>Actualizar Contrato</h3>
+    <form id="update-form">
+        <input type="text" id="update-contrato-id" placeholder="ID del Contrato" required>
+        <input type="text" id="update-nombre" placeholder="Nuevo Nombre">
+        <input type="text" id="update-anos-membresia" placeholder="Nuevos Años de Membresía">
+        <input type="text" id="update-beneficiarios" placeholder="Nuevos Beneficiarios">
+        <input type="text" id="update-celular" placeholder="Nuevo Celular">
+        <input type="text" id="update-cerrador" placeholder="Nuevo Cerrador">
+        <input type="email" id="update-correo" placeholder="Nuevo Correo Electrónico">
+        <input type="text" id="update-cortesia" placeholder="Nueva Cortesía">
+        <input type="text" id="update-cuotas-pagadas" placeholder="Nuevas Cuotas Pagadas">
+        <input type="text" id="update-dni" placeholder="Nuevo DNI">
+        <input type="text" id="update-estado" placeholder="Nuevo Estado">
+        <input type="date" id="update-fecha-nacimiento" placeholder="Nueva Fecha de Nacimiento">
+        <input type="number" id="update-ingreso-dolares" placeholder="Nuevo Ingreso en Dólares">
+        <input type="number" id="update-ingreso-soles" placeholder="Nuevo Ingreso en Soles">
+        <input type="date" id="update-inicio-pago" placeholder="Nuevo Inicio de Pago">
+        <input type="text" id="update-liner" placeholder="Nuevo Liner">
+        <input type="number" id="update-monto-cuotas-dolares" placeholder="Nuevo Monto de Cuotas en Dólares">
+        <input type="number" id="update-monto-cuotas-soles" placeholder="Nuevo Monto de Cuotas en Soles">
+        <input type="number" id="update-monto-pagare-dolares" placeholder="Nuevo Monto del Pagaré en Dólares">
+        <input type="number" id="update-monto-pagare-soles" placeholder="Nuevo Monto del Pagaré en Soles">
+        <input type="number" id="update-numero-cuotas" placeholder="Nuevo Número de Cuotas">
+        <input type="number" id="update-numero-pagare" placeholder="Nuevo Número del Pagaré">
+        <input type="text" id="update-obsequio" placeholder="Nuevo Obsequio">
+        <input type="text" id="update-observacion1" placeholder="Nueva Observación 1">
+        <input type="text" id="update-observacion2" placeholder="Nueva Observación 2">
+        <input type="number" id="update-saldo-por-pagar-dolares" placeholder="Nuevo Saldo por Pagar en Dólares">
+        <input type="number" id="update-saldo-por-pagar-soles" placeholder="Nuevo Saldo por Pagar en Soles">
+        <input type="number" id="update-valor-contrato-dolares" placeholder="Nuevo Valor del Contrato en Dólares">
+        <input type="number" id="update-valor-contrato-soles" placeholder="Nuevo Valor del Contrato en Soles">
+        <button type="submit">Actualizar Contrato</button>
+    </form>
+
+    <!-- Formulario para Eliminar Datos -->
+    <h3>Eliminar Contrato</h3>
+    <form id="delete-form">
+        <input type="text" id="delete-contrato-id" placeholder="ID del Contrato" required>
+        <button type="submit">Eliminar Contrato</button>
+    </form>
+
+    <!-- Firebase App (Este es siempre necesario) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <!-- Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+    <!-- Firebase Database -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
+
+    <script>
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyC4sLp_eOeQkEVl4LRHcdZ84PjgyPUgZlE",
+            authDomain: "jfuireghfkwioan.firebaseapp.com",
+            databaseURL: "https://jfuireghfkwioan-default-rtdb.firebaseio.com",
+            projectId: "jfuireghfkwioan",
+            storageBucket: "jfuireghfkwioan.appspot.com",
+            messagingSenderId: "700003578134",
+            appId: "1:700003578134:web:b8a4c91fe2c779b55c2037"
+        };
+        
+        // Inicializar Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        // Lógica de Login
+        const loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    alert('Login exitoso');
+                })
+                .catch(error => {
+                    alert('Error en el login: ' + error.message);
+                });
+        });
+
+        // Leer Datos de Contrato
+        const readForm = document.getElementById('read-form');
+        readForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const contratoId = document.getElementById('read-contrato-id').value;
+
+            database.ref('contratosAfiliados/' + contratoId).once('value')
+                .then(snapshot => {
+                    const contratoData = snapshot.val();
+                    document.getElementById('contrato-data').textContent = JSON.stringify(contratoData, null, 2);
+                })
+                .catch(error => {
+                    alert('Error al leer contrato: ' + error.message);
+                });
+        });
+
+        // Crear Nuevo Contrato
+        const createForm = document.getElementById('create-form');
+        createForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const contratoId = document.getElementById('create-contrato-id').value;
+            const contratoData = {
+                anosMembresia: document.getElementById('create-anos-membresia').value,
+                beneficiarios: document.getElementById('create-beneficiarios').value,
+                celular: document.getElementById('create-celular').value,
+                cerrador: document.getElementById('create-cerrador').value,
+                correo: document.getElementById('create-correo').value,
+                cortesia: document.getElementById('create-cortesia').value,
+                cuotasPagadas: document.getElementById('create-cuotas-pagadas').value,
+                dni: document.getElementById('create-dni').value,
+                estado: document.getElementById('create-estado').value,
+                fechaNacimiento: document.getElementById('create-fecha-nacimiento').value,
+                ingresoDolares: document.getElementById('create-ingreso-dolares').value,
+                ingresoSoles: document.getElementById('create-ingreso-soles').value,
+                inicioPago: document.getElementById('create-inicio-pago').value,
+                liner: document.getElementById('create-liner').value,
+                montoCuotasDolares: document.getElementById('create-monto-cuotas-dolares').value,
+                montoCuotasSoles: document.getElementById('create-monto-cuotas-soles').value,
+                montoPagareDolares: document.getElementById('create-monto-pagare-dolares').value,
+                montoPagareSoles: document.getElementById('create-monto-pagare-soles').value,
+                nombre: document.getElementById('create-nombre').value,
+                numeroCuotas: document.getElementById('create-numero-cuotas').value,
+                numeroPagare: document.getElementById('create-numero-pagare').value,
+                obsequio: document.getElementById('create-obsequio').value,
+                observacion1: document.getElementById('create-observacion1').value,
+                observacion2: document.getElementById('create-observacion2').value,
+                saldoPorPagarDolares: document.getElementById('create-saldo-por-pagar-dolares').value,
+                saldoPorPagarSoles: document.getElementById('create-saldo-por-pagar-soles').value,
+                valorContratoDolares: document.getElementById('create-valor-contrato-dolares').value,
+                valorContratoSoles: document.getElementById('create-valor-contrato-soles').value
+            };
+
+            database.ref('contratosAfiliados/' + contratoId).set(contratoData)
+                .then(() => {
+                    alert('Contrato creado exitosamente');
+                })
+                .catch(error => {
+                    alert('Error al crear contrato: ' + error.message);
+                });
+        });
+
+        // Actualizar Contrato
+        const updateForm = document.getElementById('update-form');
+        updateForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const contratoId = document.getElementById('update-contrato-id').value;
+            const updates = {};
+
+            if (document.getElementById('update-anos-membresia').value) updates['anosMembresia'] = document.getElementById('update-anos-membresia').value;
+            if (document.getElementById('update-beneficiarios').value) updates['beneficiarios'] = document.getElementById('update-beneficiarios').value;
+            if (document.getElementById('update-celular').value) updates['celular'] = document.getElementById('update-celular').value;
+            if (document.getElementById('update-cerrador').value) updates['cerrador'] = document.getElementById('update-cerrador').value;
+            if (document.getElementById('update-correo').value) updates['correo'] = document.getElementById('update-correo').value;
+            if (document.getElementById('update-cortesia').value) updates['cortesia'] = document.getElementById('update-cortesia').value;
+            if (document.getElementById('update-cuotas-pagadas').value) updates['cuotasPagadas'] = document.getElementById('update-cuotas-pagadas').value;
+            if (document.getElementById('update-dni').value) updates['dni'] = document.getElementById('update-dni').value;
+            if (document.getElementById('update-estado').value) updates['estado'] = document.getElementById('update-estado').value;
+            if (document.getElementById('update-fecha-nacimiento').value) updates['fechaNacimiento'] = document.getElementById('update-fecha-nacimiento').value;
+            if (document.getElementById('update-ingreso-dolares').value) updates['ingresoDolares'] = document.getElementById('update-ingreso-dolares').value;
+            if (document.getElementById('update-ingreso-soles').value) updates['ingresoSoles'] = document.getElementById('update-ingreso-soles').value;
+            if (document.getElementById('update-inicio-pago').value) updates['inicioPago'] = document.getElementById('update-inicio-pago').value;
+            if (document.getElementById('update-liner').value) updates['liner'] = document.getElementById('update-liner').value;
+            if (document.getElementById('update-monto-cuotas-dolares').value) updates['montoCuotasDolares'] = document.getElementById('update-monto-cuotas-dolares').value;
+            if (document.getElementById('update-monto-cuotas-soles').value) updates['montoCuotasSoles'] = document.getElementById('update-monto-cuotas-soles').value;
+            if (document.getElementById('update-monto-pagare-dolares').value) updates['montoPagareDolares'] = document.getElementById('update-monto-pagare-dolares').value;
+            if (document.getElementById('update-monto-pagare-soles').value) updates['montoPagareSoles'] = document.getElementById('update-monto-pagare-soles').value;
+            if (document.getElementById('update-nombre').value) updates['nombre'] = document.getElementById('update-nombre').value;
+            if (document.getElementById('update-numero-cuotas').value) updates['numeroCuotas'] = document.getElementById('update-numero-cuotas').value;
+            if (document.getElementById('update-numero-pagare').value) updates['numeroPagare'] = document.getElementById('update-numero-pagare').value;
+            if (document.getElementById('update-obsequio').value) updates['obsequio'] = document.getElementById('update-obsequio').value;
+            if (document.getElementById('update-observacion1').value) updates['observacion1'] = document.getElementById('update-observacion1').value;
+            if (document.getElementById('update-observacion2').value) updates['observacion2'] = document.getElementById('update-observacion2').value;
+            if (document.getElementById('update-saldo-por-pagar-dolares').value) updates['saldoPorPagarDolares'] = document.getElementById('update-saldo-por-pagar-dolares').value;
+            if (document.getElementById('update-saldo-por-pagar-soles').value) updates['saldoPorPagarSoles'] = document.getElementById('update-saldo-por-pagar-soles').value;
+            if (document.getElementById('update-valor-contrato-dolares').value) updates['valorContratoDolares'] = document.getElementById('update-valor-contrato-dolares').value;
+            if (document.getElementById('update-valor-contrato-soles').value) updates['valorContratoSoles'] = document.getElementById('update-valor-contrato-soles').value;
+
+            database.ref('contratosAfiliados/' + contratoId).update(updates)
+                .then(() => {
+                    alert('Contrato actualizado exitosamente');
+                })
+                .catch(error => {
+                    alert('Error al actualizar contrato: ' + error.message);
+                });
+});
