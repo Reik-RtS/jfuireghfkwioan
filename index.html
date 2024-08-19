@@ -3,111 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Login y CRUD</title>
+    <title>Gestión de Contratos</title>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js"></script>
 </head>
 <body>
-    <h1>Login con Firebase</h1>
+    <h1>Gestión de Contratos</h1>
 
-    <!-- Formulario de Login -->
+    <!-- Login -->
     <form id="login-form">
-        <input type="email" id="email" placeholder="Correo Electrónico" required>
+        <h2>Iniciar Sesión</h2>
+        <input type="email" id="email" placeholder="Correo electrónico" required>
         <input type="password" id="password" placeholder="Contraseña" required>
-        <button type="submit">Iniciar Sesión</button>
+        <button type="submit">Login</button>
     </form>
 
-    <h2>Operaciones CRUD</h2>
-
-    <!-- Formulario para Leer Datos -->
-    <h3>Leer Datos de Contrato</h3>
+    <!-- Leer Datos de Contrato -->
     <form id="read-form">
+        <h2>Leer Contrato</h2>
         <input type="text" id="read-contrato-id" placeholder="ID del Contrato" required>
         <button type="submit">Leer Contrato</button>
     </form>
     <pre id="contrato-data"></pre>
 
-    <!-- Formulario para Guardar Nuevos Datos -->
-    <h3>Crear Nuevo Contrato</h3>
+    <!-- Crear Nuevo Contrato -->
     <form id="create-form">
+        <h2>Crear Nuevo Contrato</h2>
         <input type="text" id="create-contrato-id" placeholder="ID del Contrato" required>
-        <input type="text" id="create-nombre" placeholder="Nombre" required>
-        <input type="text" id="create-anos-membresia" placeholder="Años de Membresía" required>
-        <input type="text" id="create-beneficiarios" placeholder="Beneficiarios" required>
-        <input type="text" id="create-celular" placeholder="Celular" required>
-        <input type="text" id="create-cerrador" placeholder="Cerrador" required>
-        <input type="email" id="create-correo" placeholder="Correo Electrónico" required>
-        <input type="text" id="create-cortesia" placeholder="Cortesía" required>
-        <input type="text" id="create-cuotas-pagadas" placeholder="Cuotas Pagadas" required>
-        <input type="text" id="create-dni" placeholder="DNI" required>
-        <input type="text" id="create-estado" placeholder="Estado" required>
-        <input type="date" id="create-fecha-nacimiento" placeholder="Fecha de Nacimiento" required>
-        <input type="number" id="create-ingreso-dolares" placeholder="Ingreso en Dólares" required>
-        <input type="number" id="create-ingreso-soles" placeholder="Ingreso en Soles" required>
-        <input type="date" id="create-inicio-pago" placeholder="Inicio de Pago" required>
-        <input type="text" id="create-liner" placeholder="Liner" required>
-        <input type="number" id="create-monto-cuotas-dolares" placeholder="Monto de Cuotas en Dólares" required>
-        <input type="number" id="create-monto-cuotas-soles" placeholder="Monto de Cuotas en Soles" required>
-        <input type="number" id="create-monto-pagare-dolares" placeholder="Monto del Pagaré en Dólares" required>
-        <input type="number" id="create-monto-pagare-soles" placeholder="Monto del Pagaré en Soles" required>
-        <input type="number" id="create-numero-cuotas" placeholder="Número de Cuotas" required>
-        <input type="number" id="create-numero-pagare" placeholder="Número del Pagaré" required>
-        <input type="text" id="create-obsequio" placeholder="Obsequio" required>
-        <input type="text" id="create-observacion1" placeholder="Observación 1" required>
-        <input type="text" id="create-observacion2" placeholder="Observación 2" required>
-        <input type="number" id="create-saldo-por-pagar-dolares" placeholder="Saldo por Pagar en Dólares" required>
-        <input type="number" id="create-saldo-por-pagar-soles" placeholder="Saldo por Pagar en Soles" required>
-        <input type="number" id="create-valor-contrato-dolares" placeholder="Valor del Contrato en Dólares" required>
-        <input type="number" id="create-valor-contrato-soles" placeholder="Valor del Contrato en Soles" required>
+        <input type="text" id="create-anos-membresia" placeholder="Años de Membresía">
+        <input type="text" id="create-beneficiarios" placeholder="Beneficiarios">
+        <input type="text" id="create-celular" placeholder="Celular">
+        <input type="text" id="create-cerrador" placeholder="Cerrador">
+        <input type="email" id="create-correo" placeholder="Correo">
+        <input type="text" id="create-cortesia" placeholder="Cortesía">
+        <input type="number" id="create-cuotas-pagadas" placeholder="Cuotas Pagadas">
+        <input type="text" id="create-dni" placeholder="DNI">
+        <input type="text" id="create-estado" placeholder="Estado">
+        <input type="date" id="create-fecha-nacimiento" placeholder="Fecha de Nacimiento">
+        <input type="number" id="create-ingreso-dolares" placeholder="Ingreso en Dólares">
+        <input type="number" id="create-ingreso-soles" placeholder="Ingreso en Soles">
+        <input type="date" id="create-inicio-pago" placeholder="Inicio de Pago">
+        <input type="text" id="create-liner" placeholder="Liner">
+        <input type="number" id="create-monto-cuotas-dolares" placeholder="Monto de Cuotas en Dólares">
+        <input type="number" id="create-monto-cuotas-soles" placeholder="Monto de Cuotas en Soles">
+        <input type="number" id="create-monto-pagare-dolares" placeholder="Monto del Pagaré en Dólares">
+        <input type="number" id="create-monto-pagare-soles" placeholder="Monto del Pagaré en Soles">
+        <input type="text" id="create-nombre" placeholder="Nombre">
+        <input type="number" id="create-numero-cuotas" placeholder="Número de Cuotas">
+        <input type="number" id="create-numero-pagare" placeholder="Número de Pagaré">
+        <input type="text" id="create-obsequio" placeholder="Obsequio">
+        <input type="text" id="create-observacion1" placeholder="Observación 1">
+        <input type="text" id="create-observacion2" placeholder="Observación 2">
+        <input type="number" id="create-saldo-por-pagar-dolares" placeholder="Saldo por Pagar en Dólares">
+        <input type="number" id="create-saldo-por-pagar-soles" placeholder="Saldo por Pagar en Soles">
+        <input type="number" id="create-valor-contrato-dolares" placeholder="Valor del Contrato en Dólares">
+        <input type="number" id="create-valor-contrato-soles" placeholder="Valor del Contrato en Soles">
         <button type="submit">Crear Contrato</button>
     </form>
 
-    <!-- Formulario para Actualizar Datos -->
-    <h3>Actualizar Contrato</h3>
+    <!-- Actualizar Contrato -->
     <form id="update-form">
+        <h2>Actualizar Contrato</h2>
         <input type="text" id="update-contrato-id" placeholder="ID del Contrato" required>
-        <input type="text" id="update-nombre" placeholder="Nuevo Nombre">
-        <input type="text" id="update-anos-membresia" placeholder="Nuevos Años de Membresía">
-        <input type="text" id="update-beneficiarios" placeholder="Nuevos Beneficiarios">
-        <input type="text" id="update-celular" placeholder="Nuevo Celular">
-        <input type="text" id="update-cerrador" placeholder="Nuevo Cerrador">
-        <input type="email" id="update-correo" placeholder="Nuevo Correo Electrónico">
-        <input type="text" id="update-cortesia" placeholder="Nueva Cortesía">
-        <input type="text" id="update-cuotas-pagadas" placeholder="Nuevas Cuotas Pagadas">
-        <input type="text" id="update-dni" placeholder="Nuevo DNI">
-        <input type="text" id="update-estado" placeholder="Nuevo Estado">
-        <input type="date" id="update-fecha-nacimiento" placeholder="Nueva Fecha de Nacimiento">
-        <input type="number" id="update-ingreso-dolares" placeholder="Nuevo Ingreso en Dólares">
-        <input type="number" id="update-ingreso-soles" placeholder="Nuevo Ingreso en Soles">
-        <input type="date" id="update-inicio-pago" placeholder="Nuevo Inicio de Pago">
-        <input type="text" id="update-liner" placeholder="Nuevo Liner">
-        <input type="number" id="update-monto-cuotas-dolares" placeholder="Nuevo Monto de Cuotas en Dólares">
-        <input type="number" id="update-monto-cuotas-soles" placeholder="Nuevo Monto de Cuotas en Soles">
-        <input type="number" id="update-monto-pagare-dolares" placeholder="Nuevo Monto del Pagaré en Dólares">
-        <input type="number" id="update-monto-pagare-soles" placeholder="Nuevo Monto del Pagaré en Soles">
-        <input type="number" id="update-numero-cuotas" placeholder="Nuevo Número de Cuotas">
-        <input type="number" id="update-numero-pagare" placeholder="Nuevo Número del Pagaré">
-        <input type="text" id="update-obsequio" placeholder="Nuevo Obsequio">
-        <input type="text" id="update-observacion1" placeholder="Nueva Observación 1">
-        <input type="text" id="update-observacion2" placeholder="Nueva Observación 2">
-        <input type="number" id="update-saldo-por-pagar-dolares" placeholder="Nuevo Saldo por Pagar en Dólares">
-        <input type="number" id="update-saldo-por-pagar-soles" placeholder="Nuevo Saldo por Pagar en Soles">
-        <input type="number" id="update-valor-contrato-dolares" placeholder="Nuevo Valor del Contrato en Dólares">
-        <input type="number" id="update-valor-contrato-soles" placeholder="Nuevo Valor del Contrato en Soles">
+        <input type="text" id="update-anos-membresia" placeholder="Años de Membresía">
+        <input type="text" id="update-beneficiarios" placeholder="Beneficiarios">
+        <input type="text" id="update-celular" placeholder="Celular">
+        <input type="text" id="update-cerrador" placeholder="Cerrador">
+        <input type="email" id="update-correo" placeholder="Correo">
+        <input type="text" id="update-cortesia" placeholder="Cortesía">
+        <input type="number" id="update-cuotas-pagadas" placeholder="Cuotas Pagadas">
+        <input type="text" id="update-dni" placeholder="DNI">
+        <input type="text" id="update-estado" placeholder="Estado">
+        <input type="date" id="update-fecha-nacimiento" placeholder="Fecha de Nacimiento">
+        <input type="number" id="update-ingreso-dolares" placeholder="Ingreso en Dólares">
+        <input type="number" id="update-ingreso-soles" placeholder="Ingreso en Soles">
+        <input type="date" id="update-inicio-pago" placeholder="Inicio de Pago">
+        <input type="text" id="update-liner" placeholder="Liner">
+        <input type="number" id="update-monto-cuotas-dolares" placeholder="Monto de Cuotas en Dólares">
+        <input type="number" id="update-monto-cuotas-soles" placeholder="Monto de Cuotas en Soles">
+        <input type="number" id="update-monto-pagare-dolares" placeholder="Monto del Pagaré en Dólares">
+        <input type="number" id="update-monto-pagare-soles" placeholder="Monto del Pagaré en Soles">
+        <input type="text" id="update-nombre" placeholder="Nombre">
+        <input type="number" id="update-numero-cuotas" placeholder="Número de Cuotas">
+        <input type="number" id="update-numero-pagare" placeholder="Número de Pagaré">
+        <input type="text" id="update-obsequio" placeholder="Obsequio">
+        <input type="text" id="update-observacion1" placeholder="Observación 1">
+        <input type="text" id="update-observacion2" placeholder="Observación 2">
+        <input type="number" id="update-saldo-por-pagar-dolares" placeholder="Saldo por Pagar en Dólares">
+        <input type="number" id="update-saldo-por-pagar-soles" placeholder="Saldo por Pagar en Soles">
+        <input type="number" id="update-valor-contrato-dolares" placeholder="Valor del Contrato en Dólares">
+        <input type="number" id="update-valor-contrato-soles" placeholder="Valor del Contrato en Soles">
         <button type="submit">Actualizar Contrato</button>
     </form>
-
-    <!-- Formulario para Eliminar Datos -->
-    <h3>Eliminar Contrato</h3>
-    <form id="delete-form">
-        <input type="text" id="delete-contrato-id" placeholder="ID del Contrato" required>
-        <button type="submit">Eliminar Contrato</button>
-    </form>
-
-    <!-- Firebase App (Este es siempre necesario) -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
-    <!-- Firebase Authentication -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
-    <!-- Firebase Database -->
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js"></script>
 
     <script>
         // Configuración de Firebase
@@ -120,7 +108,7 @@
             messagingSenderId: "700003578134",
             appId: "1:700003578134:web:b8a4c91fe2c779b55c2037"
         };
-        
+
         // Inicializar Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
@@ -132,38 +120,35 @@
             e.preventDefault();
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-
             auth.signInWithEmailAndPassword(email, password)
-                .then(userCredential => {
-                    alert('Login exitoso');
+                .then(() => {
+                    alert('Inicio de sesión exitoso');
                 })
                 .catch(error => {
-                    alert('Error en el login: ' + error.message);
+                    alert('Error en el inicio de sesión: ' + error.message);
                 });
         });
 
-        // Leer Datos de Contrato
+        // Lógica para leer contrato
         const readForm = document.getElementById('read-form');
         readForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const contratoId = document.getElementById('read-contrato-id').value;
-
             database.ref('contratosAfiliados/' + contratoId).once('value')
                 .then(snapshot => {
-                    const contratoData = snapshot.val();
-                    document.getElementById('contrato-data').textContent = JSON.stringify(contratoData, null, 2);
+                    document.getElementById('contrato-data').textContent = JSON.stringify(snapshot.val(), null, 2);
                 })
                 .catch(error => {
-                    alert('Error al leer contrato: ' + error.message);
+                    alert('Error al leer el contrato: ' + error.message);
                 });
         });
 
-        // Crear Nuevo Contrato
+        // Lógica para crear un nuevo contrato
         const createForm = document.getElementById('create-form');
         createForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const contratoId = document.getElementById('create-contrato-id').value;
-            const contratoData = {
+            const newContrato = {
                 anosMembresia: document.getElementById('create-anos-membresia').value,
                 beneficiarios: document.getElementById('create-beneficiarios').value,
                 celular: document.getElementById('create-celular').value,
@@ -194,16 +179,16 @@
                 valorContratoSoles: document.getElementById('create-valor-contrato-soles').value
             };
 
-            database.ref('contratosAfiliados/' + contratoId).set(contratoData)
+            database.ref('contratosAfiliados/' + contratoId).set(newContrato)
                 .then(() => {
                     alert('Contrato creado exitosamente');
                 })
                 .catch(error => {
-                    alert('Error al crear contrato: ' + error.message);
+                    alert('Error al crear el contrato: ' + error.message);
                 });
         });
 
-        // Actualizar Contrato
+        // Lógica para actualizar un contrato existente
         const updateForm = document.getElementById('update-form');
         updateForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -244,6 +229,9 @@
                     alert('Contrato actualizado exitosamente');
                 })
                 .catch(error => {
-                    alert('Error al actualizar contrato: ' + error.message);
+                    alert('Error al actualizar el contrato: ' + error.message);
                 });
-});
+        });
+    </script>
+</body>
+</html>
